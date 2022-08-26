@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 html,
 body {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   background-color: #ffffff !important;
 }
 
@@ -19,45 +21,204 @@ h4 {
   font-family: "Playfair Display", sans-serif !important;
 }
 
-h5 {
-  font-family: "Montserrat" !important;
-  font-style: normal;
+h1 {
+  font-family: "Inter" !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 48px !important;
+  line-height: 110% !important;
+  color: #14142b !important;
+}
+
+h2 {
+  font-family: "Inter" !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  line-height: 120% !important;
+  color: #14142b !important;
+}
+
+h3 {
+  font-family: "Inter" !important;
+  font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 30px !important;
-  line-height: 83% !important;
-  @media only screen and (max-width: 767px) {
-    font-family: "Montserrat" !important;
-    font-style: normal;
-    font-weight: 600 !important;
-    font-size: 25px !important;
-    line-height: 100% !important;
-  }
+  font-size: 24px !important;
+  line-height: 125% !important;
+  color: #14142b !important;
+}
+
+h4 {
+  font-family: "Inter" !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  line-height: 140% !important;
+  color: #14142b !important;
+}
+
+h5 {
+  font-family: "Inter" !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  color: #14142b !important;
 }
 
 h6 {
-  font-family: "Montserrat" !important;
-  font-style: normal;
-  font-weight: 600 !important;
-  font-size: 25px !important;
-  line-height: 83% !important;
-  @media only screen and (max-width: 767px) {
-    font-family: "Montserrat" !important;
-    font-style: normal;
-    font-weight: 600 !important;
-    font-size: 20px !important;
-    line-height: 100% !important;
-  }
+  font-family: "Inter" !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 150% !important;
+  color: #14142b !important;
 }
 
 p {
-  font-family: "Montserrat" !important;
+  font-family: "Inter" !important;
   font-style: normal !important;
-  font-size: 22px !important;
-  line-height: 140% !important;
-  @media only screen and (max-width: 767px) {
-    font-family: "Montserrat" !important;
-    font-style: normal !important;
-    font-size: 20px !important;
-    line-height: 144% !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  color: #14142b !important;
+}
+
+input {
+  font-family: "Inter" !important;
+}
+
+span {
+  font-family: "Inter" !important;
+}
+
+small {
+  font-family: "Inter" !important;
+}
+
+label {
+  font-family: "Inter" !important;
+}
+
+a {
+  font-family: "Inter" !important;
+}
+
+li {
+  font-family: "Inter" !important;
+}
+
+div {
+  font-family: "Inter" !important;
+}
+
+textarea {
+  font-family: "Inter" !important;
+}
+
+.primaryColor {
+  background: #1ad993;
+}
+
+.secondaryColor {
+  background: #abffe0;
+}
+
+.darkBlueColor {
+  background: #503ae7;
+}
+
+.darkPurpleColor {
+  background: #832bc1;
+}
+
+.darkBlackColor {
+  background: #14142b;
+}
+
+.darkGreyColor {
+  background: #afb0b9;
+}
+
+.darkWhiteColor {
+  background: #f4f2ff;
+}
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.my-4 {
+  margin: 1rem 0;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+// .MuiOutlinedInput-root {
+//   border-radius: 30px !important;
+//   background: #f4f2ff;
+// }
+
+// .MuiLink-underlineHover {
+//   color: #14142b !important;
+// }
+
+// .product_page_container {
+//   .Mui-checked {
+//     color: #832bc1 !important;
+//   }
+// }
+
+.navbar_container {
+  .MuiFilledInput-input {
+    border-radius: 10px !important;
+    background: #f4f2ff;
   }
+  .MuiInputLabel-root {
+    color: #14142b !important;
+  }
+  .MuiFilledInput-root {
+    &::after {
+      border: none !important;
+    }
+  }
+  .BaseBadge-badge {
+    background: #832bc1 !important;
+  }
+}
+
+.menu_container {
+  .MuiPaper-root {
+    background: #f4f2ff !important;
+  }
+}
+
+.rec-arrow {
+  height: 30px !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  line-height: 30px !important;
+  font-size: 10px !important;
+  background: #14142b !important;
+  color: white !important;
 }

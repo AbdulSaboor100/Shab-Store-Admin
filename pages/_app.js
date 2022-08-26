@@ -6,23 +6,37 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
+import { wrapper, store } from "../redux/store";
+import { Provider } from "react-redux";
 import "../styles/globals.scss";
+import setAuthToken from "../utils/setAuthToken";
+import { getCurrentUser } from "../redux/actions/auth";
 
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  React.useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      setAuthToken(token);
+      store.dispatch(getCurrentUser());
+    }
+  }, []);
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>HOME SELLERS LP</title>
+        <title>Shab Store</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
     </CacheProvider>
   );
 }
@@ -30,5 +44,5 @@ export default function MyApp(props) {
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired
+  pageProps: PropTypes.object.isRequired,
 };
