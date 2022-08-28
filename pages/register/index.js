@@ -1,7 +1,7 @@
 import { Avatar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { PrimaryButton } from "../../components/Button/Button";
-import styles from "../../styles/register.module.scss";
+import styles from "../../styles/login.module.scss";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
