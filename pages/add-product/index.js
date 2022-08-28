@@ -1,5 +1,5 @@
 import { IconButton, Typography } from "@mui/material";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import Input from "../../components/Tags/Input/Input";
 import TextArea from "../../components/Tags/TextArea/TextArea";
 import Layout from "../../Layout/Layout/Layout";
@@ -12,11 +12,15 @@ import UploadIcon from "@mui/icons-material/Upload";
 import { uploadFile } from "../../redux/actions/auth";
 import { useDispatch } from "react-redux";
 import { setAlert } from "../../redux/actions/alert";
+import { addProduct } from "../../redux/actions/product";
 
 const Products = () => {
   let dispatch = useDispatch();
   const selectSizes = ["Small", "Medium", "Large", "X-large"];
+  const category = ["Polo Pk", "Polo Garsi", "Shab Normal", "Shab Feast"];
+  let formRef = useRef();
   let [values, setValues] = useState([]);
+  let [categoryVal, setCategoryVal] = useState("");
   let [colorsIndex, setColorsIndex] = useState(1);
   let [loading, setLoading] = useState(false);
 
@@ -56,8 +60,11 @@ const Products = () => {
       dispatch(
         setAlert({ type: "error", message: "Price is empty", time: 1000 })
       );
+    } else if (!categoryVal) {
+      dispatch(
+        setAlert({ type: "error", message: "Category is empty", time: 1000 })
+      );
     } else if (!newColors[0]) {
-      console.log(colors);
       dispatch(
         setAlert({ type: "error", message: "Color is empty", time: 1000 })
       );
@@ -66,14 +73,28 @@ const Products = () => {
         setAlert({ type: "error", message: "Sizes is empty", time: 1000 })
       );
     } else {
-      console.log({
+      let productData = {
         title,
         description,
         price,
         image,
         colors: newColors,
-        values,
-      });
+        sizes: values,
+        category: categoryVal,
+      };
+      dispatch(
+        addProduct(
+          productData,
+          setLoading,
+          setTitle,
+          setDescription,
+          setPrice,
+          setImage,
+          setValues,
+          setCategoryVal,
+          formRef?.current?.childNodes
+        )
+      );
     }
   };
 
@@ -83,7 +104,7 @@ const Products = () => {
         <div className={styles.product_header}>
           <Typography variant="h2">Add Products</Typography>
           <div className={styles.btn_container}>
-            <PrimaryButton onClick={onSubmitProduct}>
+            <PrimaryButton onClick={onSubmitProduct} type="submit">
               <UploadIcon /> Product
             </PrimaryButton>
           </div>
@@ -91,7 +112,7 @@ const Products = () => {
         <div className={styles.product}>
           <Image
             className="flex items-center gap-4"
-            isUploaded={false}
+            isUploaded={image ? true : false}
             onChange={async (e) => {
               let file = await dispatch(
                 uploadFile(e?.target?.files[0], setLoading)
@@ -123,10 +144,18 @@ const Products = () => {
             data={selectSizes}
             label={"Sizes"}
             setValues={setValues}
+            values={values}
+            className="mt-4"
+          />
+          <Select
+            data={category}
+            label={"Category"}
+            setValues={setCategoryVal}
+            values={categoryVal}
             className="mt-4"
           />
           <div className="my-4">
-            <form onChange={colorsSubmitter}>
+            <form onChange={colorsSubmitter} ref={formRef}>
               {Array(colorsIndex)
                 ?.fill()
                 ?.map((item, index) => (

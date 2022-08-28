@@ -11,19 +11,23 @@ import { Provider } from "react-redux";
 import "../styles/globals.scss";
 import setAuthToken from "../utils/setAuthToken";
 import { getCurrentUser } from "../redux/actions/auth";
+import { getProducts } from "../redux/actions/product";
+import { useRouter } from "next/router";
 
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  let router = useRouter();
 
   React.useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
       setAuthToken(token);
-      store.dispatch(getCurrentUser());
+      store.dispatch(getCurrentUser(router));
+      store.dispatch(getProducts());
     }
-  }, []);
+  }, [store.getState().auth?.token]);
 
   return (
     <CacheProvider value={emotionCache}>

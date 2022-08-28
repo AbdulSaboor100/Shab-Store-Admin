@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Spinner from "../../components/Spinner/Spinner";
 import Alerts from "../../components/Alerts/Alerts";
 
-const Layout = ({ children, spinner }) => {
+const Layout = ({ children, spinner, secondaryLoader }) => {
   let user = useSelector((state) => state?.auth?.user);
   let router = useRouter();
 
@@ -18,6 +18,7 @@ const Layout = ({ children, spinner }) => {
   return (
     <div className={styles.layout_container}>
       {spinner ? <Spinner /> : null}
+      {secondaryLoader ? <Spinner /> : null}
       <Alerts />
       <LayoutDrawer user={user}>{children}</LayoutDrawer>
     </div>

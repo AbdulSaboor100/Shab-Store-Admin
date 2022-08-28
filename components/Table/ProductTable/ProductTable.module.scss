@@ -1,0 +1,12 @@
+.table_container {
+  width: 100%;
+  th {
+    white-space: nowrap;
+  }
+  td {
+    white-space: nowrap;
+    span {
+      padding: 0 0.2rem;
+    }
+  }
+}

@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 const Input = ({ ...rest }) => {
   return (
     <div className={styles.input_container}>
-      <TextField id="outlined-basic" variant="outlined" fullWidth {...rest} />
+      <TextField id="outlined-basic" variant="outlined" fullWidth {...rest}  />
     </div>
   );
 };

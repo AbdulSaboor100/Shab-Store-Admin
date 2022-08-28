@@ -93,7 +93,7 @@ export const uploadFile = (file, setLoading) => async (dispatch) => {
   }
 };
 
-export const getCurrentUser = () => async (dispatch) => {
+export const getCurrentUser = (router) => async (dispatch) => {
   try {
     let response = await axios.get(`${BASE_URL}/api/auth/current-user`);
     dispatch({ type: Types.GET_CURRENT_USER, payload: response?.data });
@@ -104,7 +104,7 @@ export const getCurrentUser = () => async (dispatch) => {
         payload: error?.response?.data?.status,
       });
       if (error?.response?.data?.status) {
-        dispatch(userLogout());
+        dispatch(userLogout(router));
       }
     } else {
       dispatch({

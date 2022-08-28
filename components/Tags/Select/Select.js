@@ -18,26 +18,26 @@ const MenuProps = {
   },
 };
 
-function getStyles(name, personName, theme) {
+function getStyles(name, values, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      values.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-const Select = ({ data, className, label, setValues, ...rest }) => {
+const Select = ({ data, className, label, setValues, values, ...rest }) => {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
-    if (setValues) {
+    if (!rest?.multiple) {
       setValues(value);
+    } else {
+      setValues(typeof value === "string" ? value.split(",") : value);
     }
   };
   return (
@@ -47,7 +47,7 @@ const Select = ({ data, className, label, setValues, ...rest }) => {
         <MUISelect
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={personName}
+          value={values}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
@@ -57,7 +57,7 @@ const Select = ({ data, className, label, setValues, ...rest }) => {
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, personName, theme)}
+              style={getStyles(name, values, theme)}
             >
               {name}
             </MenuItem>
